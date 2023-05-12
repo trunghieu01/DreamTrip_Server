@@ -46,6 +46,7 @@ public class ServerApplication {
         corsConfig.addAllowedMethod("PUT");
         corsConfig.addAllowedMethod("PATCH");
         corsConfig.addAllowedMethod("POST");
+        corsConfig.addAllowedMethod("DELETE");
         corsConfig.addAllowedMethod("OPTIONS");
         corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
         corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Requestor-Type"));
