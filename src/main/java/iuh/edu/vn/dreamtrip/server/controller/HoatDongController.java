@@ -37,7 +37,7 @@ public class HoatDongController {
 	@Autowired
 	DanhGiaServiceImp danhGiaService;
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@PostMapping("/insert")
 	public boolean insertHoatDong(@RequestBody HoatDong hd) throws InterruptedException, ExecutionException {
 		dbHoatDong.createHoatDong(hd);
@@ -45,7 +45,7 @@ public class HoatDongController {
 		return true;
 	}
 
-	@CrossOrigin(origins = {"http://localhost:3000", "http:/localhost:8081"})
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http:/localhost:8081"})
 	@GetMapping("/find")
 	public List<HoatDong> getHoatDong(@RequestParam String tourID) throws InterruptedException, ExecutionException {
 		List<HoatDong> listHD = dbHoatDong.getHoatDong(tourID);
@@ -56,7 +56,7 @@ public class HoatDongController {
 		return null;
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@PutMapping("/update")
 	public boolean updateHoatDong(@RequestBody HoatDong hd) throws InterruptedException, ExecutionException {
 		String res = dbHoatDong.updateHoatDong(hd);
@@ -67,7 +67,7 @@ public class HoatDongController {
 		return false;
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@DeleteMapping("/delete")
 	public boolean deleteHoatDong(@RequestParam String document_id) throws InterruptedException, ExecutionException {
 		if (dbHoatDong.getHoatDong(document_id) == null) {
@@ -83,20 +83,20 @@ public class HoatDongController {
 		}
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@GetMapping("/findbyTourId")
 	public List<HoatDong> findAllHDbyTourID(@RequestParam String tourId)
 			throws InterruptedException, ExecutionException {
 		return dbHoatDong.findAllsByTourId(tourId);
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@GetMapping("/findalls")
 	public List<HoatDong> findAlls() throws InterruptedException, ExecutionException {
 		return dbHoatDong.findAlls();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
 	@GetMapping("/rate")
 	public List<HoatDong> getTourForRate(@RequestParam String userId, @RequestParam boolean status) throws ExecutionException, InterruptedException {
 		List<HoatDong> list = new ArrayList<>();

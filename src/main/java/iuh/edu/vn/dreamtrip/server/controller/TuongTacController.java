@@ -20,7 +20,7 @@ public class TuongTacController {
     ThongTinThongKeServiceImp thongTinThongKeServiceImp;
     @Autowired
     TourServiceImp tourServiceImp;
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
     @PostMapping("/insert")
     public String insertTour(@RequestBody TuongTac tuongTac) throws InterruptedException, ExecutionException {
         return tuongTacServiceImp.insert(tuongTac);
@@ -169,7 +169,7 @@ public class TuongTacController {
     public boolean checkLiked(@RequestParam String tourId,@RequestParam String userId) throws InterruptedException, ExecutionException {
         return tuongTacServiceImp.checkLike(tourId,userId);
     }
-    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/findAll")
     public TuongTac findAllBytourId(@RequestParam String tourId) throws InterruptedException, ExecutionException {
         return tuongTacServiceImp.findAllByTourId(tourId);

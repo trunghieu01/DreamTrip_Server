@@ -33,7 +33,7 @@ public class AdminController {
 		this.nguoiDungService = nguoiDungService;
 	}
 	// Đk tài khoản đầu vào là một lớp dto chứa 2 object là tk và thông tin tài khoản
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@PostMapping("/create")
 	public boolean insertNguoiDung(@RequestBody TaiKhoanAdminUserDTO tk_user_dto) throws InterruptedException, ExecutionException {
 		if(tkDB.getTK(tk_user_dto.getTk().getUserName()) != null)
@@ -52,7 +52,7 @@ public class AdminController {
 		}
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@GetMapping("/get")
 	public NguoiDung getNguoiDung(@RequestParam String document_id) throws InterruptedException, ExecutionException {
 		NguoiDung nd =  nguoiDungService.getNguoiDung(document_id);
@@ -62,13 +62,13 @@ public class AdminController {
 		logger.log(Level.WARNING, "Không tìm thấy người dùng có id: "+document_id);
 		return null;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@GetMapping("/findByEmail")
 	public NguoiDung findNguoiDungByEmail(@RequestParam String email) throws InterruptedException, ExecutionException {
 		NguoiDung nd =  nguoiDungService.getNguoiDungByEmail(email);
 		return nd;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@PutMapping("/update")
 	public boolean updateNguoiDung(@RequestBody NguoiDung nguoiDung) throws InterruptedException, ExecutionException {
 		String res =  nguoiDungService.updateNguoiDung(nguoiDung);
@@ -78,7 +78,7 @@ public class AdminController {
 		logger.log(Level.WARNING, "ERRO: Lỗi cập nhật thông tin : "+ nguoiDung);
 		return false;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@DeleteMapping("/delete")
 	public boolean deleteNguoiDung(@RequestParam String document_id) throws InterruptedException, ExecutionException {
 		if(nguoiDungService.getNguoiDung(document_id) == null)

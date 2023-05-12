@@ -40,7 +40,7 @@ public class TaiKhoanController {
     OTPServiceImp otpService;
 	// Đk tài khoản đầu vào là một lớp dto chứa 2 object là tk và thông tin tài
 	// khoản
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@PostMapping("/register")
 	public boolean dangKyTaiKhoan(@RequestBody TaiKhoanAdminUserDTO tk_user_dto)
 			throws InterruptedException, ExecutionException {
@@ -60,7 +60,7 @@ public class TaiKhoanController {
 		}
 	}
 
-    //	@CrossOrigin(origins = "http://localhost:3000")
+    //	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 //	@GetMapping("/get")
 //	public TaiKhoan getTK(@RequestParam String username) throws InterruptedException, ExecutionException {
 //		TaiKhoan tk = taikKhoanServiceImp.getTK(username);
@@ -70,7 +70,7 @@ public class TaiKhoanController {
 //		logger.log(Level.WARNING, "Không tìm thấy tài khoản với username :" + username);
 //		return null;
 //	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@GetMapping("/loggin")
 	public TaiKhoan getTK(@RequestParam String username) throws InterruptedException, ExecutionException {
 		TaiKhoan tk = taikKhoanServiceImp.getTK(username);
@@ -80,7 +80,7 @@ public class TaiKhoanController {
 		logger.log(Level.WARNING, "Không tìm thấy tài khoản với username :" + username);
 		return null;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@GetMapping("/logginUser")
 	public TaiKhoan logginUser(@RequestParam String userName, @RequestParam String password) throws InterruptedException, ExecutionException {
 		TaiKhoan tk = taikKhoanServiceImp.getTK(userName);
@@ -91,7 +91,7 @@ public class TaiKhoanController {
 		logger.log(Level.WARNING, "Không tìm thấy tài khoản với username :" + userName);
 		return null;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@PutMapping("/update")
 	public boolean updateTK(@RequestBody TaiKhoan taiKhoan) throws InterruptedException, ExecutionException {
 		String res = taikKhoanServiceImp.updateTK(taiKhoan);
@@ -101,7 +101,7 @@ public class TaiKhoanController {
 		logger.log(Level.WARNING, "Không thể cập nhật tài khoản :" + taiKhoan);
 		return false;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@PutMapping("/updateMK")
 	public boolean updateMatKhau(@RequestBody TaiKhoan taiKhoan) throws InterruptedException, ExecutionException {
 		String hashedPassword = PasswordEncoder.encode(taiKhoan.getPassword());
@@ -113,7 +113,7 @@ public class TaiKhoanController {
 		logger.log(Level.WARNING, "Không thể cập nhật tài khoản :" + taiKhoan);
 		return false;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@DeleteMapping("/delete")
 	public boolean deleteTK(@RequestParam String username) throws InterruptedException, ExecutionException {
 		String res = taikKhoanServiceImp.deleteTK(username);
@@ -123,7 +123,7 @@ public class TaiKhoanController {
 		logger.log(Level.WARNING, "Không thể xóa tài khoản :" + username);
 		return false;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
 	@GetMapping("/findAll")
 	public List<TaiKhoan> findAll() throws InterruptedException, ExecutionException {
 		return  taikKhoanServiceImp.findAll();
