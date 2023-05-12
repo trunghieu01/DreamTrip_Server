@@ -32,7 +32,7 @@ public class HoatDongServiceImp implements HoatDongService {
 
 	@Override
 	public List<HoatDong> getHoatDong(String tourID) throws InterruptedException, ExecutionException {
-		Query query = dbFireStore.collection("hoatDong").whereEqualTo("tourId", tourID).orderBy("thoiGianHD");
+		Query query = dbFireStore.collection("hoatDong").orderBy("thoiGianHD").whereEqualTo("tourId", tourID);
 		QuerySnapshot querySnapshot = query.get().get();
 		List<HoatDong> listHd = new ArrayList<>();
 		for (QueryDocumentSnapshot hd : querySnapshot.getDocuments()) {
