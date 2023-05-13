@@ -41,7 +41,7 @@ public class TourController {
         this.dbTour = dbTour;
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"})
     @PostMapping("/insert")
     public String insertTour(@RequestBody Tour tour) throws InterruptedException, ExecutionException {
         Tour new_tour = dbTour.insertTour(tour);
@@ -60,19 +60,19 @@ public class TourController {
 
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"})
     @GetMapping("/get_tour")
     public Tour getTour(@RequestParam String document_id) throws InterruptedException, ExecutionException {
         return dbTour.getTour(document_id);
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"})
     @PutMapping("/update")
     public String updateTour(@RequestBody Tour tour) throws InterruptedException, ExecutionException {
         return dbTour.updateTour(tour);
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"})
     @DeleteMapping("/delete")
     public String deleteTour(@RequestParam String document_id) throws InterruptedException, ExecutionException {
         String result = dbTour.deleteTour(document_id);
@@ -87,7 +87,7 @@ public class TourController {
         return result;
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/findAlls")
     public ResponseEntity<List<Tour>> findAllTour() throws InterruptedException, ExecutionException {
         HttpHeaders headers = new HttpHeaders();
@@ -95,13 +95,13 @@ public class TourController {
         return ResponseEntity.ok().headers(headers).body(dbTour.findAlls());
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/searchs")
     public List<Tour> searchTourByName(@RequestParam String tourName) throws InterruptedException, ExecutionException {
         return dbTour.searchTourByName(tourName);
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/findByCate")
     public ResponseEntity<List<Tour>> findByCate(@RequestParam String cate) throws InterruptedException, ExecutionException {
         HttpHeaders headers = new HttpHeaders();
@@ -109,7 +109,7 @@ public class TourController {
         return ResponseEntity.ok().headers(headers).body(dbTour.findByCategory(cate));
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://192.168.34.106:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://192.168.34.106:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/findTrending")
     public ResponseEntity<List<Tour>> findTrending() throws InterruptedException, ExecutionException {
         HttpHeaders headers = new HttpHeaders();
@@ -117,7 +117,7 @@ public class TourController {
         return ResponseEntity.ok().headers(headers).body(dbTour.findTrending());
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://192.168.34.106:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://192.168.34.106:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/findPopular")
     public ResponseEntity<List<Tour>> findPopular() throws InterruptedException, ExecutionException {
         HttpHeaders headers = new HttpHeaders();
@@ -125,7 +125,7 @@ public class TourController {
         return ResponseEntity.ok().headers(headers).body(dbTour.findPopular());
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/findFilter")
     public ResponseEntity<List<Tour>> findByNameAndCate(@RequestParam String cate, @RequestParam String name) throws InterruptedException, ExecutionException {
         HttpHeaders headers = new HttpHeaders();
@@ -139,7 +139,7 @@ public class TourController {
         return ResponseEntity.ok().headers(headers).body(dbTour.findByNameAndCate(name, cate));
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("liked")
     public List<Tour> getLiked(String userId) throws ExecutionException, InterruptedException {
         List<Tour> list = new ArrayList<>();
@@ -150,7 +150,7 @@ public class TourController {
         return list;
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("booked")
     public List<Tour> getBooked(String userId) throws ExecutionException, InterruptedException {
         List<Tour> list = new ArrayList<>();
@@ -161,7 +161,7 @@ public class TourController {
         return list;
     }
 
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("planed")
     public List<Tour> getPlaned(String userId) throws ExecutionException, InterruptedException {
         List<Tour> list = new ArrayList<>();

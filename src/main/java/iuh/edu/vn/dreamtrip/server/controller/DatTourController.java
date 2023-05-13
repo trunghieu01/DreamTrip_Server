@@ -23,7 +23,7 @@ public class DatTourController {
     TuongTacServiceImp tuongTacService;
 
     @PostMapping("/insert")
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://192.168.1.2:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://192.168.1.2:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     public KhachHangTour insert(@RequestBody KhachHangTour k) throws ExecutionException, InterruptedException {
         datTourService.insert(k);
         tuongTacService.book(k.getTourId(), k.getNguoiDungId());
@@ -49,12 +49,12 @@ public class DatTourController {
     public boolean check(@RequestParam String tourId, @RequestParam String userId) throws ExecutionException, InterruptedException {
         return datTourService.check(tourId, userId);
     }
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000"})
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"})
     @PutMapping("/adminCheck")
     public boolean adminCheck(@RequestBody KhachHangTour khachHangTour) throws ExecutionException, InterruptedException {
         return datTourService.adminCheck(khachHangTour);
     }
-    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000", "http://localhost:8081"}, allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/find")
     public List<KhachHangTour> findAllByTourIdAndUserId(@RequestParam String tourId, @RequestParam String userId) throws ExecutionException, InterruptedException {
         return datTourService.findKhTourByTourIdAndUserId(tourId, userId);
