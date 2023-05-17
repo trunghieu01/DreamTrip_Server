@@ -71,6 +71,32 @@ public class ThongTinThongKeServiceImp implements ThongTinThongKeService{
         return thongTinThongKes;
     }
     @Override
+    public List<ThongTinThongKe> getTttkOfOneTour(int thang, int nam, String tourId) throws ExecutionException, InterruptedException {
+        CollectionReference collectionReference = dbFireStore.collection("thongTinThongKe");
+        Query query = collectionReference.whereEqualTo("tourId", tourId);
+        QuerySnapshot querySnapshot = query.get().get();
+        List<ThongTinThongKe> thongTinThongKes = new ArrayList<>();
+        Date new_date = new Date();
+
+        String dateString = "1/"+thang+"/"+ nam;
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = format.parse(dateString);
+            System.out.println(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        for (QueryDocumentSnapshot tttk : querySnapshot.getDocuments()) {
+            ThongTinThongKe new_tttk = tttk.toObject(ThongTinThongKe.class);
+            if (new_tttk.getThangNam().getMonth() == date.getMonth() && new_tttk.getThangNam().getYear() == date.getYear()) {
+                thongTinThongKes.add(new_tttk);
+                System.out.println(new_date);
+            }
+        }
+        return thongTinThongKes;
+    }
+    @Override
     public ThongTinThongKe getTttkByThangNamAndTourId(String tourId) throws ExecutionException, InterruptedException {
         CollectionReference collectionReference = dbFireStore.collection("thongTinThongKe");
         Query query = collectionReference.whereEqualTo("tourId", tourId);
@@ -83,6 +109,19 @@ public class ThongTinThongKeServiceImp implements ThongTinThongKeService{
             }
         }
         return null;
+    }
+    @Override
+    public List<ThongTinThongKe> getTTTKByTourId(String tourId) throws ExecutionException, InterruptedException {
+        CollectionReference collectionReference = dbFireStore.collection("thongTinThongKe");
+        List<ThongTinThongKe> thongKes = new ArrayList<ThongTinThongKe>();
+        Query query = collectionReference.whereEqualTo("tourId", tourId);
+        QuerySnapshot querySnapshot = query.get().get();
+        Date new_date = new Date();
+        for (QueryDocumentSnapshot tttk : querySnapshot.getDocuments()) {
+            ThongTinThongKe new_tttk = tttk.toObject(ThongTinThongKe.class);
+           thongKes.add(new_tttk);
+        }
+        return thongKes;
     }
     @Override
     public ThongTinThongKe getThongTinThongKeByIdTour(String thongTinId) throws ExecutionException, InterruptedException {
@@ -102,6 +141,30 @@ public class ThongTinThongKeServiceImp implements ThongTinThongKeService{
         List<ThongTinThongKeThangDTO> thongTinThongKeThangDTOS = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
             List<ThongTinThongKe> thongTinThongKes =  getTttkByThangNam(i, nam);
+            int slThich = 0;
+            int slDat = 0;
+            int slThemKeHoach = 0;
+            if (thongTinThongKes.size() >0 ) {
+                for (ThongTinThongKe info: thongTinThongKes
+                     ) {
+                    slThich = slThich + info.getSlThich();
+                    slDat = slDat + info.getSlDatTour();
+                    slThemKeHoach = slThemKeHoach + info.getSlThemKeHoach();
+                }
+                ThongTinThongKeThangDTO tttkt = new ThongTinThongKeThangDTO("Tháng "+ i, slThich, slDat, slThemKeHoach, 2000);
+                thongTinThongKeThangDTOS.add(tttkt);
+            } else {
+                ThongTinThongKeThangDTO tttkt = new ThongTinThongKeThangDTO("Tháng "+ i, slThich, slDat, slThemKeHoach, 2000);
+                thongTinThongKeThangDTOS.add(tttkt);
+            }
+        }
+        return thongTinThongKeThangDTOS;
+    }
+    @Override
+    public List<ThongTinThongKeThangDTO> thongKeCacThangTrongNamOfOne(int nam, String tourId) throws ExecutionException, InterruptedException {
+        List<ThongTinThongKeThangDTO> thongTinThongKeThangDTOS = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            List<ThongTinThongKe> thongTinThongKes =  getTttkOfOneTour(i, nam, tourId);
             int slThich = 0;
             int slDat = 0;
             int slThemKeHoach = 0;

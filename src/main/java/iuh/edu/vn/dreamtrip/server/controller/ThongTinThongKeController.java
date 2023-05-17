@@ -40,4 +40,14 @@ public class ThongTinThongKeController {
     public ThongTinThongKe getTttkByThangNamAndTourId(String tourId) throws InterruptedException, ExecutionException {
         return dbTttk.getTttkByThangNamAndTourId(tourId);
     }
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"})
+    @GetMapping("/findByTourId")
+    public List<ThongTinThongKe> findByTourId(String tourId) throws InterruptedException, ExecutionException {
+        return dbTttk.getTTTKByTourId(tourId);
+    }
+    @CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"})
+    @GetMapping("/findByNamAndTourId")
+    public List<ThongTinThongKeThangDTO> findByNamAndTourId(int nam, String tourId) throws InterruptedException, ExecutionException {
+        return dbTttk.thongKeCacThangTrongNamOfOne(nam, tourId);
+    }
 }

@@ -13,4 +13,9 @@ public interface ThongTinThongKeService {
     public ThongTinThongKe getThongTinThongKeByIdTour(String tourId) throws ExecutionException, InterruptedException;
     public List<ThongTinThongKeThangDTO> thongKeCacThangTrongNam(int nam) throws ExecutionException, InterruptedException;
     public ThongTinThongKe getTttkByThangNamAndTourId(String tourId) throws ExecutionException, InterruptedException ;
+	List<ThongTinThongKe> getTTTKByTourId(String tourId) throws ExecutionException, InterruptedException;
+	List<ThongTinThongKe> getTttkOfOneTour(int thang, int nam, String tourId)
+			throws ExecutionException, InterruptedException;
+	List<ThongTinThongKeThangDTO> thongKeCacThangTrongNamOfOne(int nam, String tourId)
+			throws ExecutionException, InterruptedException;
     }
