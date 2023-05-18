@@ -24,6 +24,7 @@ iuh\edu\vn\dreamtrip\server\service\TuongTacService.class
 iuh\edu\vn\dreamtrip\server\service\TuongTacServiceImp.class
 iuh\edu\vn\dreamtrip\server\controller\TaiKhoanController.class
 iuh\edu\vn\dreamtrip\server\controller\AdminController.class
+iuh\edu\vn\dreamtrip\server\controller\DanhGiaController$1.class
 iuh\edu\vn\dreamtrip\server\service\DatTourService.class
 iuh\edu\vn\dreamtrip\server\service\ThongTinThongKeServiceImp.class
 iuh\edu\vn\dreamtrip\server\controller\HoatDongController.class

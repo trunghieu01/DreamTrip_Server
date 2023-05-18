@@ -13,4 +13,5 @@ public interface HoatDongService {
 	public List<HoatDong> findAllsByTourId(String tourId) throws InterruptedException, ExecutionException;
 	List<HoatDong> findAlls() throws InterruptedException, ExecutionException;
 	HoatDong findById(String id) throws InterruptedException, ExecutionException;
+	String updateRating(String id, String comment, int rate);
 }

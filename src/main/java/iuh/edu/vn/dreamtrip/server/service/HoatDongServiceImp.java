@@ -106,4 +106,10 @@ public class HoatDongServiceImp implements HoatDongService {
 		}
 		return null;
 	}
+
+	@Override
+	public String updateRating(String id, String comment, int rate) {
+		dbFireStore.collection("hoatDong").document(id).update("binhLuan", comment, "danhGia", rate);
+		return null;
+	}
 }
