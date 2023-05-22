@@ -44,4 +44,9 @@ public class UserController {
     public NguoiDung getById(@RequestParam String email) throws InterruptedException, ExecutionException {
         return nguoiDungService.getNguoiDungByEmail(email);
     }
+
+    @PutMapping("/update")
+    public String update(@RequestBody NguoiDung nguoiDung) throws InterruptedException, ExecutionException {
+        return nguoiDungService.updateNguoiDung(nguoiDung);
+    }
 }
