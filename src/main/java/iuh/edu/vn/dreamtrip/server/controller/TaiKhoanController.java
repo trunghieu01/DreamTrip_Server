@@ -104,8 +104,8 @@ public class TaiKhoanController {
 	@CrossOrigin(origins = {"https://tourapp-d8ea8.firebaseapp.com/", "https://tourapp-d8ea8.web.app/", "http://localhost:3000"})
 	@PutMapping("/updateMK")
 	public boolean updateMatKhau(@RequestBody TaiKhoan taiKhoan) throws InterruptedException, ExecutionException {
-		String hashedPassword = PasswordEncoder.encode(taiKhoan.getPassword());
-		taiKhoan.setPassword(hashedPassword);
+//		String hashedPassword = PasswordEncoder.encode(taiKhoan.getPassword());
+//		taiKhoan.setPassword(hashedPassword);
 		String res = taikKhoanServiceImp.updateTK(taiKhoan);
 		if (res != null) {
 			return true;
